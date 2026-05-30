@@ -74,7 +74,7 @@ class Program
     }
 
     #region Интерактивный ввод
-    static Animal CreateAnimalInteractively()
+    static Animal? CreateAnimalInteractively()
     {
         Console.WriteLine("\n📦 Выберите тип животного:");
         Console.WriteLine("1 - Собака (Dog)");
@@ -90,32 +90,41 @@ class Program
         int age = ReadInt("Возраст (лет): ");
         float weight = (float)ReadDouble("Вес (кг): ");
 
-        switch (type)
+        try
         {
-            case "1":
-                Console.Write("Порода: ");
-                string breed = Console.ReadLine()?.Trim() ?? "Дворняга";
-                return new Dog(name, age, weight, breed);
+            switch (type)
+            {
+                case "1":
+                    Console.Write("Порода: ");
+                    string breed = Console.ReadLine()?.Trim() ?? "Дворняга";
+                    return new Dog(name, age, weight, breed);
 
-            case "2":
-                Console.Write("Окрас: ");
-                string color = Console.ReadLine()?.Trim() ?? "Рыжая";
-                return new Cat(name, age, weight, color);
+                case "2":
+                    Console.Write("Окрас: ");
+                    string color = Console.ReadLine()?.Trim() ?? "Рыжая";
+                    return new Cat(name, age, weight, color);
 
-            case "3":
-                bool hasHorns = ReadBool("Есть рога? (да/нет): ");
-                double milk = ReadDouble("Удой (литров/день): ");
-                return new Cow(name, age, weight, hasHorns, milk);
+                case "3":
+                    bool Artiodactyl = true;
+                    double milk = ReadDouble("Удой (литров/день): ");
+                    return new Cow(name, age, weight, Artiodactyl, (float)milk);
 
-            case "4":
-                bool isTrained = ReadBool("Обучена? (да/нет): ");
-                double speed = ReadDouble("Скорость (км/ч): ");
-                return new Horse(name, age, weight, isTrained, speed);
+                case "4":
+                    bool Artiodactyl_Hose = false;
+                    double speed = ReadDouble("Скорость (км/ч): ");
+                    return new Horse(name, age, weight, Artiodactyl_Hose, (float)speed);
 
-            default:
-                Console.WriteLine("❌ Неверный тип животного.");
-                return null;
+                default:
+                    Console.WriteLine("❌ Неверный тип животного.");
+                    return null;
+            }
         }
+        catch (ArgumentException ex)
+        {
+            Console.WriteLine($"⚠️ Ошибка валидации: {ex.Message}");
+            return null;
+        }
+    
     }
 
     static int ReadInt(string prompt)

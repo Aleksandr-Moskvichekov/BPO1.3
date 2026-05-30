@@ -12,9 +12,9 @@ namespace BPO1._3.Models
 
         protected Animal(string name, int age, float weight)
         {
-            Name = name;
-            Age = age;
-            Weight = weight;
+            Name = string.IsNullOrWhiteSpace(name) ? throw new ArgumentException("Имя не может быть пустым.", nameof(name)) : name;
+            Age = (age < 0 || age >= 100) ? throw new ArgumentOutOfRangeException(nameof(age), "Возраст: [0; 99].") : age;
+            Weight = (weight <= 0) ? throw new ArgumentOutOfRangeException(nameof(weight), "Вес должен быть > 0.") : weight;
         }
         /// <summary>
         /// Абстрактный метод для реализации в наследниках
