@@ -132,8 +132,15 @@ class Program
         while (true)
         {
             Console.Write(prompt);
-            if (int.TryParse(Console.ReadLine(), out int result)) return result;
-            Console.WriteLine(" Ошибка: введите целое число.");
+            if (int.TryParse(Console.ReadLine(), out int result))
+            {
+                if (result > 0) return result;
+                Console.WriteLine("Ошибка: число должно быть больше нуля.");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: введите целое число.");
+            }
         }
     }
 
@@ -142,8 +149,15 @@ class Program
         while (true)
         {
             Console.Write(prompt);
-            if (double.TryParse(Console.ReadLine(), out double result)) return result;
-            Console.WriteLine("Ошибка: введите корректное число.");
+            if (double.TryParse(Console.ReadLine(), out double result))
+            {
+                if (result > 0) return result;
+                Console.WriteLine("Ошибка: число должно быть больше нуля.");
+            }
+            else
+            {
+                Console.WriteLine("Ошибка: введите корректное число.");
+            }
         }
     }
 
