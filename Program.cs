@@ -76,7 +76,7 @@ class Program
     #region Интерактивный ввод
     static Animal? CreateAnimalInteractively()
     {
-        Console.WriteLine("\n📦 Выберите тип животного:");
+        Console.WriteLine("\nВыберите тип животного:");
         Console.WriteLine("1 - Собака (Dog)");
         Console.WriteLine("2 - Кот (Cat)");
         Console.WriteLine("3 - Корова (Cow)");
@@ -121,7 +121,7 @@ class Program
         }
         catch (ArgumentException ex)
         {
-            Console.WriteLine($"⚠️ Ошибка валидации: {ex.Message}");
+            Console.WriteLine($"Ошибка валидации: {ex.Message}");
             return null;
         }
     

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BPO1._3.Models
 {
-    public abstract class Animal
+    public abstract class Animal: IAnimal
     {
         public string Name { get; set; }
         public int Age { get; }
