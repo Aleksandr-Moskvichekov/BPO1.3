@@ -1,0 +1,46 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BPO1._3.Models
+{
+    public abstract class Animal: IAnimal
+    {
+        public string Name { get; set; }
+        public int Age { get; }
+        public float Weight { get; set; }
+
+        protected Animal(string name, int age, float weight)
+        {
+            Name = string.IsNullOrWhiteSpace(name) ? throw new ArgumentException("Имя не может быть пустым.", nameof(name)) : name;
+            Age = (age < 0 || age >= 100) ? throw new ArgumentOutOfRangeException(nameof(age), "Возраст: [0; 99].") : age;
+            Weight = (weight <= 0) ? throw new ArgumentOutOfRangeException(nameof(weight), "Вес должен быть > 0.") : weight;
+        }
+        /// <summary>
+        /// Абстрактный метод для реализации в наследниках
+        /// </summary>
+        public abstract void MakeSound();
+
+        public virtual void AnimalInfo()
+        {
+            Console.WriteLine($"Класс: {GetType().Name}");
+            Console.WriteLine($"Имя: {Name}");
+            Console.WriteLine($"Возраст: {Age}");
+            Console.WriteLine($"Вес: {Weight} кг");
+        }
+
+        ~Animal()
+        {
+            Console.WriteLine($"{Name} Прошел мимо шаурмечной");
+            if (Age >= 6 | Weight <= 50)
+            {
+                Console.WriteLine($"{Name} - Вернулся с прогулки");
+            }
+            else
+            {
+                Console.WriteLine($"Джамшут пригрел на вертиле {Name}");
+            }
+
+        }
+    }
+}
